@@ -1,6 +1,7 @@
 package pages.client;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -77,6 +78,40 @@ public class AddClient {
     }
 
 
+    @FindBy (id="select2-client_country-container")
+    WebElement containerCountry;
+
+    public void setCountry(String country)
+    {
+        containerCountry.click();
+       // searchBox.sendKeys(country);
+        driver.findElement(By.xpath("//li[normalize-space()='"+country+"']")).click();
+    }
+
+    @FindBy(id="select2-client_gender-container")
+    WebElement containerGender;
+    
+    public void setGender(String gender)
+    {
+        containerGender.click();
+        driver.findElement(By.xpath("//li[normalize-space()='"+gender+"']")).click();
+
+    }
+
+    @FindBy (xpath="//input[@id='client_birthdate']")
+    WebElement birthDate;
+
+    public void setBirthDate(String bDate)
+    {
+        //birthDate.sendKeys(bDate);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("arguments[0].setAttribute('value','"+bDate+"')",birthDate);
+
+    }
+
+
     public void setClientName(String name)
     {
         clientName.sendKeys(name);
@@ -99,6 +134,51 @@ public class AddClient {
     public  void setClientCity(String city)
     {
         clientCity.sendKeys(city);
+    }
+
+    public void setclientstate(String state)
+    {
+        clientState.sendKeys(state);
+    }
+
+    public void setclientzip(String zip)
+    {
+        clientZip.sendKeys(zip);
+    }
+
+    public void setclientphone(String phno)
+    {
+        clientPhone.sendKeys(phno);
+    }
+
+    public void setClientFaxno(String faxno)
+    {
+        clientFax.sendKeys(faxno);
+    }
+
+    public void setClientMobno(String mobileno)
+    {
+        clientMobile.sendKeys(mobileno);
+    }
+
+    public void setClientEmail(String email)
+    {
+        clientEmail.sendKeys(email);
+    }
+
+    public void setClientWeb(String web)
+    {
+        clientWeb.sendKeys(web);
+    }
+
+    public void setClientVatid(String vatid)
+    {
+        clientVat.sendKeys(vatid);
+    }
+
+    public void setClienttaxcode(String taxid)
+    {
+        clientTax.sendKeys(taxid);
     }
 
     public void clickSave()

@@ -37,13 +37,26 @@ public class AddClientTest {
 
         AddClient addClient = new AddClient(driver);
 
-        addClient.setlanguage("Thai");
 
-       /* addClient.setClientName("Rohith");
+        addClient.setClientName("Rohith123");
         addClient.setClientSurname("borra");
+        addClient.setlanguage("Thai");
         addClient.setClientAdd1("xyz");
         addClient.setClientAdd2("pqr");
         addClient.setClientCity("Pune");
-        addClient.clickSave();*/
+        addClient.setclientstate("MH");
+        addClient.setclientzip("898989");
+        addClient.setCountry("Kenya");
+        addClient.setGender("Other");
+        addClient.setBirthDate("05/12/1980");
+        addClient.setclientphone("987878");
+        addClient.setClientFaxno("898989");
+        addClient.setClientMobno("89889");
+        addClient.setClientEmail("amol@gmail.com");
+        addClient.setClientWeb("www.xyz.com");
+        addClient.setClientVatid("8989");
+        addClient.setClienttaxcode("898989");
+
+        addClient.clickSave();
     }
 }
