@@ -1,6 +1,5 @@
 package DBTesting.clients;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import static utilities.ConfigReader.*;
 import static utilities.Conversion.*;
@@ -22,7 +20,7 @@ import static utilities.DataProviderUtil.readAndGetSheet;
 import static utilities.Driver.DriverType.CHROME;
 import static utilities.Driver.getMyDriver;
 
-public class AddClientTestDBTesting {
+public class AddClientTestDBTestingCountry {
     WebDriver driver;
 
     @BeforeClass
@@ -45,24 +43,7 @@ public class AddClientTestDBTesting {
                               String web,String vat,String tax) throws ClassNotFoundException, SQLException, ParseException {
 
         ArrayList<String> expected = new ArrayList<>();
-        expected.add(name);
-        expected.add(surname);
-        expected.add(language.toLowerCase()); // English --> english
-        expected.add(add1);
-        expected.add(add2);
-        expected.add(city);
-        expected.add(state);
-        expected.add(zip);
-        expected.add(country);
-        expected.add(gender);
-        expected.add(bdate);
-        expected.add(phone);
-        expected.add(fax);
-        expected.add(mobile);
-        expected.add(email);
-        expected.add(web);
-        expected.add(vat);
-        expected.add(tax);
+
 
 
 
@@ -80,7 +61,7 @@ public class AddClientTestDBTesting {
         addClient.setClientCity(city);
         addClient.setclientstate(state);
         addClient.setclientzip(zip);
-        addClient.setCountry(country);
+        String shortCountry = addClient.setCountry(country);
         addClient.setGender(gender);
         addClient.setBirthDate(bdate);
         addClient.setclientphone(phone);
@@ -92,6 +73,29 @@ public class AddClientTestDBTesting {
         addClient.setClienttaxcode(tax);
 
         addClient.clickSave();
+
+
+
+
+        expected.add(name);
+        expected.add(surname);
+        expected.add(language.toLowerCase()); // English --> english
+        expected.add(add1);
+        expected.add(add2);
+        expected.add(city);
+        expected.add(state);
+        expected.add(zip);
+        expected.add(shortCountry);
+        expected.add(gender);
+        expected.add(bdate);
+        expected.add(phone);
+        expected.add(fax);
+        expected.add(mobile);
+        expected.add(email);
+        expected.add(web);
+        expected.add(vat);
+        expected.add(tax);
+
 
         // JDBC - JAVA DABASE CONNECTIVITY
         // 4 steps og jdbc
@@ -129,9 +133,7 @@ public class AddClientTestDBTesting {
             actual.add(rs.getString("client_zip"));
 
 
-            String shortCountry =rs.getString("client_country"); // IN
-            String fullFormCountry =  convertCountry(shortCountry);
-            actual.add(fullFormCountry);
+            actual.add(rs.getString("client_country")); // make change in expected
 
 
             actual.add(genderFull(rs.getString("client_gender")));

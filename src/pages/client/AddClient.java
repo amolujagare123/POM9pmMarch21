@@ -81,11 +81,21 @@ public class AddClient {
     @FindBy (id="select2-client_country-container")
     WebElement containerCountry;
 
-    public void setCountry(String country)
+    public String setCountry(String country)
     {
         containerCountry.click();
        // searchBox.sendKeys(country);
-        driver.findElement(By.xpath("//li[normalize-space()='"+country+"']")).click();
+        WebElement myCountry =  driver.findElement(By.xpath("//li[normalize-space()='"+country+"']"));
+
+        String countryId = myCountry.getAttribute("id");
+        //countryId ="select2-client_country-result-9s4i-BE"
+        int l = countryId.length();
+        String countryShort = countryId.substring(l-2); //BE
+        myCountry.click();
+
+        return countryShort;
+
+
     }
 
     @FindBy(id="select2-client_gender-container")
