@@ -1,27 +1,29 @@
 package UITesting;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.Color;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.Login;
+import util.OpenUrl;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import static utilities.ConfigReader.*;
 import static utilities.Driver.DriverType.CHROME;
 import static utilities.Driver.getMyDriver;
 
-public class LoginTest {
+public class LoginTest extends OpenUrl {
 
-    WebDriver driver;
+
     Login login;
 
     @BeforeClass
-    public void openUrl() throws IOException {
+    public void initLogin() throws IOException {
 
-        driver = getMyDriver(CHROME);
-        driver.get(getUrl());
+
         login = new Login(driver);
 
     }
@@ -148,5 +150,26 @@ public class LoginTest {
 
         Assert.assertTrue(result,"the actual family doesnot have the font:"+expected);
 
+    }
+
+    @Test
+    public void btnLoginColorCheck()
+    {
+        String expected ="#2C8EDD";
+
+        String actual ="";
+
+        try {
+            String rgbColor  = login.btnLogin.getCssValue("background-color");
+
+                actual = Color.fromString(rgbColor).asHex().toUpperCase();
+
+            System.out.println("actual="+actual);
+        }
+        catch (Exception e)
+        {
+
+        }
+        Assert.assertEquals(actual,expected,"wrong color");
     }
 }

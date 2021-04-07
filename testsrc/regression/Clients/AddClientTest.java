@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.Login;
 import pages.Menu;
 import pages.client.AddClient;
+import util.DoLogin;
 
 import java.io.IOException;
 
@@ -14,20 +15,8 @@ import static utilities.Driver.DriverType.CHROME;
 import static utilities.Driver.DriverType.FIREFOX;
 import static utilities.Driver.getMyDriver;
 
-public class AddClientTest {
-    WebDriver driver;
+public class AddClientTest extends DoLogin {
 
-    @BeforeClass
-    public void doLogin() throws IOException {
-
-        driver = getMyDriver(CHROME);
-        driver.get(getUrl());
-        Login login = new Login(driver);
-
-        login.setTxtUser(getUsername());
-        login.setTxtPassword(getPassword());
-        login.clickLogin();
-    }
 
     @Test
     public void addClientTest()

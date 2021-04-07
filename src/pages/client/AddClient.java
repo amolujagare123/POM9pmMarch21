@@ -61,6 +61,9 @@ public class AddClient {
     @FindBy (xpath="//input[@role='searchbox']")
     WebElement searchBox;
 
+    @FindBy (xpath="//input[@name='client_active']")
+    public WebElement checkBoxActive;
+
     WebDriver driver;
 
     public void setlanguage(String language)
